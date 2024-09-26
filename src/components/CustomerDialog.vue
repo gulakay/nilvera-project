@@ -67,15 +67,15 @@
       }
     });
       const closeDialog = () => {
-      emit('update:isVisible', false); // Dialog kapatıldığında görünürlük değerini güncelle
+      emit('update:isVisible', false); 
     };
 
     const saveCustomer = () => {
       if (processType.value === 1) {
-        customerList.value.push(CustomerInfo.value); // Yeni stok ekle
-        snackbar.value = true; // Snackbar göster 
+        customerList.value.push(CustomerInfo.value);
+        snackbar.value = true; 
       } else if (processType.value === 2) {
-        // Güncelleme işlemi
+      
         const index = customerList.value.findIndex(item => item.id === editingCustomer.value.id);
         if (index !== -1) {
           customerList.value[index] = { ...CustomerInfo.value };
@@ -83,7 +83,7 @@
         }
       }
       setTimeout(()=>{
-        emit('update:isVisible', false); // Dialogu kapat
+        emit('update:isVisible', false); 
 
       },2000)
     };
