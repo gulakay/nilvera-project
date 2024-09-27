@@ -48,15 +48,16 @@
   <v-snackbar
   v-model="snackbar"
   :timeout="timeout"
+  color="green"
 >
   {{ text }}
   </v-snackbar>
 </template>
 
 <script>
-import { ref, defineComponent, toRefs, onMounted } from 'vue';
+import { ref, toRefs, onMounted } from 'vue';
 
-export default defineComponent({
+export default {
   props: {
     isVisible: {
       type: Boolean,
@@ -89,27 +90,25 @@ export default defineComponent({
     const timeout=ref(1000);
     const text=ref("Başarılı!")
 
-    // Eğer processType güncelleme ise, StockInfo'yu editingStock ile doldur
+    
     onMounted(() => {
       
       if (processType.value === 2) {
-        console.log("aaaaaaa", editingStock.value);
         StockInfo.value = editingStock.value ;
-        console.log("ft",StockInfo.value);
         
       }
     });
 
     const closeDialog = () => {
-      emit('update:isVisible', false); // Dialog kapatıldığında görünürlük değerini güncelle
+      emit('update:isVisible', false); 
     };
 
     const saveStock = () => {
       if (processType.value === 1) {
-        stockList.value.push(StockInfo.value); // Yeni stok ekle
-        snackbar.value = true; // Snackbar göster 
+        stockList.value.push(StockInfo.value); 
+        snackbar.value = true;
       } else if (processType.value === 2) {
-        // Güncelleme işlemi
+        
         const index = stockList.value.findIndex(item => item.id === editingStock.value.id);
         if (index !== -1) {
           stockList.value[index] = { ...StockInfo.value };
@@ -117,7 +116,7 @@ export default defineComponent({
         }
       }
       setTimeout(()=>{
-        emit('update:isVisible', false); // Dialogu kapat
+        emit('update:isVisible', false); 
 
       },2000)
     };
@@ -132,6 +131,6 @@ export default defineComponent({
       text
     };
   }
-});
+};
 </script>
 

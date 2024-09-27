@@ -20,6 +20,7 @@
     <v-snackbar
   v-model="snackbar"
   :timeout="timeout"
+  color="green"
 >
   {{ text }}
   </v-snackbar>
@@ -27,9 +28,9 @@
   </template>
   
   <script>
-  import { ref, defineComponent, toRefs, onMounted } from 'vue';
+  import { ref, toRefs, onMounted } from 'vue';
   
-  export default defineComponent({
+  export default{
     props: {
       isVisible: {
         type: Boolean,
@@ -97,6 +98,6 @@
        saveCustomer
       };
     },
-  });
+  };
   </script>
   
